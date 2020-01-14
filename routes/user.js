@@ -70,7 +70,7 @@ router.put("/:id", async (req, res) => {
     };
 
     try {
-        let data = await update(id, updated_data);
+        let data = await update(id, updated_data, { updated_at: Date.now() });
 
         return res.status(200).json({
             status: "success",

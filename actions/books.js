@@ -52,16 +52,17 @@ const getDetail = async id => {
 const update = async (id, updated_data) => {
     let { title, description, price, fresh } = updated_data;
     let opts = {
-        new: fresh === "true" ? true : false
+        new: true
     };
     let data = {
         title,
         description,
-        price
+        price,
+        updated_at: Date.now()
     };
 
     try {
-        let query = await User.findOneAndUpdate(
+        let query = await Book.findOneAndUpdate(
             {
                 _id: id
             },
@@ -77,7 +78,7 @@ const update = async (id, updated_data) => {
 
 const destroy = async id => {
     try {
-        let query = await User.findOneAndDelete({
+        let query = await Book.findOneAndDelete({
             _id: id
         }).exec();
 

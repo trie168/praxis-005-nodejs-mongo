@@ -52,12 +52,13 @@ const getDetail = async id => {
 const update = async (id, updated_data) => {
     let { name, email, phone, fresh } = updated_data;
     let opts = {
-        new: fresh === "true" ? true : false
+        new: true
     };
     let data = {
         name,
         email,
-        phone
+        phone,
+        updated_at: Date.now()
     };
 
     try {
