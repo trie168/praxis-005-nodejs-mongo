@@ -1,4 +1,5 @@
 const Author = require("../models/author");
+const User = require("../models/user");
 
 const create = async req => {
     let { bookId, year, publisher, id_user } = req.body;
@@ -23,15 +24,22 @@ const create = async req => {
 
 const getAll = async () => {
     try {
-        let query = await Author.find({}).exec();
-        let data = query.map((v, i) => {
-            return {
-                bookId: v.bookId,
-                year: v.year,
-                publisher: v.publisher,
-                id_user: v.id_user
-            };
-        });
+        let data = await Author.find({})
+            .populate([
+                {
+                    path: "id_user",
+                    model: User
+                }
+            ])
+            .exec();
+        // let data = query.map((v, i) => {
+        //     return {
+        //         bookId: v.bookId,
+        //         year: v.year,
+        //         publisher: v.publisher,
+        //         id_user: v.id_user
+        //     };
+        // });
 
         return data;
     } catch (err) {
@@ -43,7 +51,14 @@ const getDetail = async id => {
     try {
         let query = await Author.findOne({
             _id: id
-        }).exec();
+        })
+            .populate([
+                {
+                    path: "id_user",
+                    model: User
+                }
+            ])
+            .exec();
 
         return query;
     } catch (err) {

@@ -1,4 +1,5 @@
 const Book = require("../models/book");
+const Author = require("../models/author");
 
 const create = async req => {
     let { title, description, price, id_author } = req.body;
@@ -23,16 +24,23 @@ const create = async req => {
 
 const getAll = async () => {
     try {
-        let query = await Book.find({}).exec();
-        let data = query.map((v, i) => {
-            return {
-                title: v.title,
-                description: v.description,
-                price: v.price,
-                id_author: v.id_author
-            };
-        });
-        console.log(data);
+        let data = await Book.find({})
+            .populate([
+                {
+                    path: "id_author",
+                    model: Author
+                }
+            ])
+            .exec();
+        // let data = query.map((v, i) => {
+        //     return {
+        //         title: v.title,
+        //         description: v.description,
+        //         price: v.price,
+        //         id_author: v.id_author
+        //     };
+        // });
+        // console.log(data);
 
         return data;
     } catch (err) {
@@ -44,7 +52,14 @@ const getDetail = async id => {
     try {
         let query = await Book.findOne({
             _id: id
-        }).exec();
+        })
+            .populate([
+                {
+                    path: "id_author",
+                    model: Author
+                }
+            ])
+            .exec();
 
         return query;
     } catch (err) {
