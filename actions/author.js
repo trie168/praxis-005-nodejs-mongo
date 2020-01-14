@@ -1,0 +1,100 @@
+const Author = require("../models/author");
+
+const create = async req => {
+    let { bookId, year, publisher, id_user } = req.body;
+
+    var insert_data = {
+        bookId,
+        year,
+        publisher,
+        id_user
+    };
+
+    let data = new Author(insert_data);
+
+    try {
+        await data.save();
+
+        return data;
+    } catch (err) {
+        throw err;
+    }
+};
+
+const getAll = async () => {
+    try {
+        let query = await Author.find({}).exec();
+        let data = query.map((v, i) => {
+            return {
+                bookId: v.bookId,
+                year: v.year,
+                publisher: v.publisher,
+                id_user: v.id_user
+            };
+        });
+
+        return data;
+    } catch (err) {
+        throw err;
+    }
+};
+
+const getDetail = async id => {
+    try {
+        let query = await Author.findOne({
+            _id: id
+        }).exec();
+
+        return query;
+    } catch (err) {
+        throw err;
+    }
+};
+
+const update = async (id, updated_data) => {
+    let { bookId, year, publisher, id_user } = updated_data;
+    let opts = {
+        new: true
+    };
+    let data = {
+        bookId,
+        year,
+        publisher,
+        id_user,
+        updated_at: Date.now()
+    };
+
+    try {
+        let query = await Author.findOneAndUpdate(
+            {
+                _id: id
+            },
+            data,
+            opts
+        ).exec();
+
+        return query;
+    } catch (err) {
+        throw err;
+    }
+};
+
+const destroy = async id => {
+    try {
+        let query = await Author.findOneAndDelete({
+            _id: id
+        }).exec();
+
+        return query;
+    } catch (err) {
+        throw err;
+    }
+};
+
+module.exports = {
+    create,
+    getAll,
+    getDetail,
+    update,
+    destroy
+};

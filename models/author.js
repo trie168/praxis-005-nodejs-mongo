@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let bookSchema = new Schema({
-    title: String,
-    description: String,
-    price: Number,
-    id_author: String,
+let authorSchema = new Schema({
+    bookId: String,
+    year: Number,
+    publisher: String,
+    id_user: String,
     created_at: {
         type: Date,
         default: Date.now
@@ -16,6 +16,6 @@ let bookSchema = new Schema({
     }
 });
 
-let Book = mongoose.model("Book", bookSchema);
+let Author = mongoose.model("Author", authorSchema);
 
-module.exports = Book;
+module.exports = Author;

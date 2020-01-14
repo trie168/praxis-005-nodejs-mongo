@@ -66,7 +66,7 @@ router.put("/:id", async (req, res) => {
         title: req.body.title,
         description: req.body.description,
         price: req.body.price,
-        fresh: req.body.fresh
+        id_author: req.body.id_author
     };
 
     try {

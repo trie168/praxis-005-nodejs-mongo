@@ -6,7 +6,7 @@ const {
     getDetail,
     update,
     destroy
-} = require("../actions/users");
+} = require("../actions/author");
 
 router.post("/", async (req, res) => {
     try {
@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
         return res.status(200).json({
             status: "success",
             data,
-            message: "User created successfully!"
+            message: "Author created successfully!"
         });
     } catch (err) {
         return res.status(400).json({
@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
         return res.send({
             status: "success",
             data,
-            message: "Get all user data"
+            message: "Get all Author data"
         });
     } catch (err) {
         return res.status(400).json({
@@ -50,7 +50,7 @@ router.get("/:id", async (req, res) => {
         return res.status(200).json({
             status: "success",
             data,
-            message: "Get user detail successfully!"
+            message: "Get author detail successfully!"
         });
     } catch (err) {
         return res.status(400).json({
@@ -63,9 +63,10 @@ router.get("/:id", async (req, res) => {
 router.put("/:id", async (req, res) => {
     let { id } = req.params;
     let updated_data = {
-        name: req.body.name,
-        email: req.body.email,
-        phone: req.body.phone
+        bookId: req.body.bookId,
+        year: req.body.year,
+        publisher: req.body.publisher,
+        id_user: req.body.id_user
     };
 
     try {
@@ -74,7 +75,7 @@ router.put("/:id", async (req, res) => {
         return res.status(200).json({
             status: "success",
             data,
-            message: "User data updated successfully!"
+            message: "Author data updated successfully!"
         });
     } catch (err) {
         return res.status(400).json({
@@ -93,7 +94,7 @@ router.delete("/:id", async (req, res) => {
         return res.status(200).json({
             status: "success",
             data,
-            message: "User data deleted successfully!"
+            message: "Author data deleted successfully!"
         });
     } catch (err) {
         return res.status(400).json({

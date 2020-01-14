@@ -1,12 +1,13 @@
 const Book = require("../models/book");
 
 const create = async req => {
-    let { title, description, price } = req.body;
+    let { title, description, price, id_author } = req.body;
     price = parseInt(price);
     var insert_data = {
         title,
         description,
-        price
+        price,
+        id_author
     };
 
     let data = new Book(insert_data);
@@ -27,9 +28,11 @@ const getAll = async () => {
             return {
                 title: v.title,
                 description: v.description,
-                price: v.price
+                price: v.price,
+                id_author: v.id_author
             };
         });
+        console.log(data);
 
         return data;
     } catch (err) {
@@ -50,7 +53,7 @@ const getDetail = async id => {
 };
 
 const update = async (id, updated_data) => {
-    let { title, description, price, fresh } = updated_data;
+    let { title, description, price, id_author } = updated_data;
     let opts = {
         new: true
     };
@@ -58,7 +61,8 @@ const update = async (id, updated_data) => {
         title,
         description,
         price,
-        updated_at: Date.now()
+        updated_at: Date.now(),
+        id_author
     };
 
     try {
