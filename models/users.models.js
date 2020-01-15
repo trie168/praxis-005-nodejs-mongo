@@ -1,8 +1,7 @@
-const mongoose = require('mongoose')
-
+const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
-let userSchema = new Schema ({
+let userSchema = new Schema({
     name: {
         type: String,
         default: null
@@ -14,29 +13,32 @@ let userSchema = new Schema ({
     },
     username: {
         type: String,
-        default: null,
-        unique: true 
-    }, 
-    gender: String, 
+        default: null
+    },
     phone: {
         type: String,
-        default: null,
+        default: null
     },
+    gender: String,
     password: {
         type: String,
-        default: null,
+        default: null
+    },
+    activated_at: {
+        type: Date,
+        default: null
+    },
+    activation_token: {
+        type: String,
+        default: null
     },
     created_at: {
         type: Date,
         default: Date.now()
     },
-    activated_at: {
+    updated_at: {
         type: Date,
-        default: null
-    }, 
-    activation_token: {
-        type: String,
-        default: null
+        default: Date.now()
     },
     deleted_at: {
         type: Date,
@@ -44,5 +46,6 @@ let userSchema = new Schema ({
     }
 })
 
-let User = mongoose.model("User", userSchema)
-module.exports = User
+let Users = mongoose.model("User", userSchema)
+
+module.exports = Users

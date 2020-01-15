@@ -1,9 +1,12 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 require('dotenv').config()
-const host = process.env.host
+
+const host = process.env.HOST
 
 mongoose.connect(host, {
-    'userNewUrlParser': true
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
 })
 
-mongoose.set('useCreateIndex', true)
+mongoose.set("useCreateIndex", true)
