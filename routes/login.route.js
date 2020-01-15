@@ -1,24 +1,24 @@
-const express = require("express");
-const router = express.Router();
-const Login = require("../actions/login");
+const express = require('express')
+const router = express.Router()
+const Login = require('../actions/login/login.action')
 
-router.post("/", async (req, res) => {
-    try {
-        let data = await new Login(req).exec();
+router.post('/', async (req, res) => {
+    try { 
+        let data = await new Login(req).exec()
 
         return res.send({
             code: 200,
-            status: "Success",
-            message: "Login Successfully 😎",
+            status: 'Success',
+            message: 'Login Successfully 😎',
             data
-        });
-    } catch (err) {
+        })
+    } catch(err) {
         return res.send({
             code: 400,
-            status: "Awww something bad happened 😱",
+            status: 'Awww something bad happened 😱',
             message: err.message
-        });
+        })
     }
-});
+})
 
-module.exports = router;
+module.exports = router 

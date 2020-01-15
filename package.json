@@ -1,26 +1,25 @@
 {
-    "name": "praxis-005-nodejs-mongo",
-    "version": "1.0.0",
-    "main": "index.js",
-    "author": "trie168",
-    "license": "MIT",
-    "scripts": {
-        "start": "node index.js",
-        "dev": "nodemon index.js"
-    },
-    "dependencies": {
-        "bcryptjs": "^2.4.3",
-        "dotenv": "^8.2.0",
-        "express": "^4.17.1",
-        "express-validator": "^6.3.1",
-        "jsonwebtoken": "^8.5.1",
-        "lodash": "^4.17.15",
-        "moment": "^2.24.0",
-        "mongoose": "^5.6.9",
-        "nodemailer": "^6.4.2",
-        "path": "^0.12.7"
-    },
-    "devDependencies": {
-        "nodemon": "^1.19.1"
-    }
+  "name": "reg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.3.0",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.7.12",
+    "nodemailer": "^6.3.1",
+    "nodemon": "^2.0.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node registration.js",
+    "dev": "nodemon registration.js"
+  },
+  "author": "Adi",
+  "license": "ISC"
 }
