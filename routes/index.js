@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
     ];
 
     return res.send({
-        app_name: "mahasiswa",
+        app_name: "test",
         version: "1.0.0",
         server_time: moment().format(),
         database_status: db_status_name[db_status]
